@@ -114,8 +114,11 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
     <script>
-      $(".dhcp").click(function () {
-        alert("I've been clicked!");
-      })
+      $(document).ready(function(){
+        $(".dhcp").click(function () {
+            alert("I've been clicked!");
+          });
+      });
+    </script>
   </body>
 </html>
