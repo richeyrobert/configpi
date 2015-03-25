@@ -8,26 +8,37 @@
     $gateway = $_POST['gateway'];
     $error_count = 0;
 
-    // Check if host name has been entered
-    if (!$_POST['host_name']) {
-        $errHostname = 'Please enter the host name';
-        $error_count += 1;
+    // See if we need to run the validations or not (is dhcp checked?)
+    if(isset($_POST['dhcp']) && 
+       $_POST['dhcp'] == 'Yes') 
+    {
+        echo "We are DHCP... Skip Validations";
     }
-    // Check if IP Address has been entered and is valid
-    if (!$_POST['ip_address'] || !filter_var($_POST['ip_address'], FILTER_VALIDATE_IP)) {
-        $errIPAddress = 'Please enter a valid IP Address';
-        $error_count += 1;
-    }
-    // Check if Subnet Mask has been entered and is valid
-    if (!$_POST['subnet_mask'] || !isValidIPv4Mask($_POST['subnet_mask'])) {
-        $errSubnet_mask = 'Please enter a valid Subnet Mask';
-        $error_count += 1;
-    }
-    //Check if valid gateway has been entered
-    if (!$_POST['gateway'] || !filter_var($_POST['gateway'], FILTER_VALIDATE_IP)) {
-        $errGateway = 'Please enter a valid Gateway';
-        $error_count += 1;
-    }
+    else
+    {
+        echo "We are not DHCP... Run Validations";
+        // Check if host name has been entered
+      if (!$_POST['host_name']) {
+          $errHostname = 'Please enter the host name';
+          $error_count += 1;
+      }
+      // Check if IP Address has been entered and is valid
+      if (!$_POST['ip_address'] || !filter_var($_POST['ip_address'], FILTER_VALIDATE_IP)) {
+          $errIPAddress = 'Please enter a valid IP Address';
+          $error_count += 1;
+      }
+      // Check if Subnet Mask has been entered and is valid
+      if (!$_POST['subnet_mask'] || !isValidIPv4Mask($_POST['subnet_mask'])) {
+          $errSubnet_mask = 'Please enter a valid Subnet Mask';
+          $error_count += 1;
+      }
+      //Check if valid gateway has been entered
+      if (!$_POST['gateway'] || !filter_var($_POST['gateway'], FILTER_VALIDATE_IP)) {
+          $errGateway = 'Please enter a valid Gateway';
+          $error_count += 1;
+      }
+    }    
+    
   }
 
   function isValidIPv4Mask($mask)
