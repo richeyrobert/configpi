@@ -18,12 +18,12 @@
     }
 
     // Check if Subnet Mask has been entered and is valid
-    if (!$_POST['subnet_mask'] || !isValidIPv4Mask($_POST['gateway'])) {
+    if (!$_POST['subnet_mask'] || !isValidIPv4Mask($_POST['subnet_mask'])) {
         $errSubnet_mask = 'Please enter a valid Subnet Mask';
     }
     
     //Check if valid gateway has been entered
-    if (!$_POST['gateway'] || !filter_var($_POST['subnet_mask'], FILTER_VALIDATE_IP)) {
+    if (!$_POST['gateway'] || !filter_var($_POST['gateway'], FILTER_VALIDATE_IP)) {
         $errGateway = 'Please enter a valid Gateway';
     }
   }
