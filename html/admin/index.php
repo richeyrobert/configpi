@@ -6,25 +6,30 @@
     $ip_address = $_POST['ip_address'];
     $subnet_mask = $_POST['subnet_mask'];
     $gateway = $_POST['gateway'];
+    $error_count = 0;
 
     // Check if host name has been entered
     if (!$_POST['host_name']) {
         $errHostname = 'Please enter the host name';
+        $error_count += 1;
     }
     
     // Check if IP Address has been entered and is valid
     if (!$_POST['ip_address'] || !filter_var($_POST['ip_address'], FILTER_VALIDATE_IP)) {
         $errIPAddress = 'Please enter a valid IP Address';
+        $error_count += 1;
     }
 
     // Check if Subnet Mask has been entered and is valid
     if (!$_POST['subnet_mask'] || !isValidIPv4Mask($_POST['subnet_mask'])) {
         $errSubnet_mask = 'Please enter a valid Subnet Mask';
+        $error_count += 1;
     }
     
     //Check if valid gateway has been entered
     if (!$_POST['gateway'] || !filter_var($_POST['gateway'], FILTER_VALIDATE_IP)) {
         $errGateway = 'Please enter a valid Gateway';
+        $error_count += 1;
     }
   }
 
@@ -37,7 +42,7 @@
         $valid_mask = True;
       }
     }
-    return $valid_mask
+    return $valid_mask;
   }
 ?>
 <!DOCTYPE html>
@@ -65,7 +70,7 @@
       <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
-            <label><input type="checkbox">DHCP</label>
+            <label><input type="checkbox" id="dhcp">DHCP</label>
           </div>
         </div>
       </div>
@@ -108,5 +113,9 @@
     <script src="../jquery/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
+    <script>
+      $(".dhcp").click(function () {
+        alert("I've been clicked!");
+      })
   </body>
 </html>
