@@ -116,7 +116,7 @@
     <script>
       $(document).ready(function(){
         $("input#dhcp").click(function () {
-          if $("input#dhcp").prop('checked')) {
+          if ($("input#dhcp").prop('checked')) {
             alert("I am checked!");
           }
           else {
