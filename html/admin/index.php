@@ -70,7 +70,7 @@
       <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
-            <label><input type="checkbox" id="dhcp">DHCP</label>
+            <label><input type="checkbox" id="dhcp" value="dhcp">DHCP</label>
           </div>
         </div>
       </div>
