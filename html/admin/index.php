@@ -37,7 +37,11 @@
           $errGateway = 'Please enter a valid Gateway';
           $error_count += 1;
       }
-    }    
+    }
+    if ( error_count == 0 ) {
+      // then we might need to show a button that will allow us to apply the network changes.
+      echo("Error Count is: ".$error_count)
+    }
     
   }
 
