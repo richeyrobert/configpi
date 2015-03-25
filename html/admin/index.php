@@ -1,31 +1,31 @@
 <?php
-    if ($_POST["submit"]) {
-        $host_name = $_POST['host_name'];
-        $ip_address = $_POST['ip_address'];
-        $subnet_mask = $_POST['subnet_mask'];
-        $gateway = $_POST['gateway'];
+  if ($_POST["submit"]) {
+    $host_name = $_POST['host_name'];
+    $ip_address = $_POST['ip_address'];
+    $subnet_mask = $_POST['subnet_mask'];
+    $gateway = $_POST['gateway'];
 
-        // Check if host name has been entered
-        if (!$_POST['host_name']) {
-            $errHostname = 'Please enter the host name';
-        }
-        
-        // Check if IP Address has been entered and is valid
-        if (!$_POST['ip_address'] || !filter_var($_POST['ip_address'], FILTER_VALIDATE_IP)) {
-            $errIPAddress = 'Please enter a valid IP Address';
-        }
+    // Check if host name has been entered
+    if (!$_POST['host_name']) {
+        $errHostname = 'Please enter the host name';
+    }
+    
+    // Check if IP Address has been entered and is valid
+    if (!$_POST['ip_address'] || !filter_var($_POST['ip_address'], FILTER_VALIDATE_IP)) {
+        $errIPAddress = 'Please enter a valid IP Address';
+    }
 
-        // Check if Subnet Mask has been entered and is valid
-        if (!$_POST['subnet_mask'] || !filter_var($_POST['subnet_mask'], FILTER_VALIDATE_IP)) {
-            $errSubnet_mask = 'Please enter a valid Subnet Mask';
-        }
-        
-        //Check if valid gateway has been entered
-        if (!$_POST['gateway'] || !filter_var($_POST['gateway'], FILTER_VALIDATE_IP)) {
-            $errSubnet_mask = 'Please enter a valid Gateway';
-        }
+    // Check if Subnet Mask has been entered and is valid
+    if (!$_POST['subnet_mask'] || !filter_var($_POST['subnet_mask'], FILTER_VALIDATE_IP)) {
+        $errSubnet_mask = 'Please enter a valid Subnet Mask';
+    }
+    
+    //Check if valid gateway has been entered
+    if (!$_POST['gateway'] || !filter_var($_POST['gateway'], FILTER_VALIDATE_IP)) {
+        $errSubnet_mask = 'Please enter a valid Gateway';
+    }
+  }
 
- 
   function isValidIPv4Mask($mask)
   {
       return ($bin = decbin(ip2long($mask))) && strpos($bin, '0') && !strpos($bin, '01');
