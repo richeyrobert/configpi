@@ -21,16 +21,31 @@
     <h1>Pi Settings</h1>
     <form class="form-horizontal" role="form" method="post" action="index.php">
       <div class="form-group">
-        <label class="control-label col-sm-2" for="email">Email:</label>
+        <label class="control-label col-sm-2" for="host_name">Host Name:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="host_name" name="host_name" placeholder="configPi" value="<?php echo htmlspecialchars($_POST['host_name']); ?>">
+          <?php echo "<p class='text-danger'>$errHostname</p>";?>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="ip_address">IP Address:</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" id="ip_address" name="ip_address" placeholder="192.168.1.20" value="<?php echo htmlspecialchars($_POST['ip_address']); ?>">
           <?php echo "<p class='text-danger'>$errIPAddress</p>";?>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2" for="pwd">Password:</label>
-        <div class="col-sm-10"> 
-          <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+        <label class="control-label col-sm-2" for="subnet_mask">Subnet Mask:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="subnet_mask" name="subnet_mask" placeholder="255.255.255.0" value="<?php echo htmlspecialchars($_POST['subnet_mask']); ?>">
+          <?php echo "<p class='text-danger'>$errSubnet_mask</p>";?>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="gateway">Gateway:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="gateway" name="gateway" placeholder="192.168.0.1" value="<?php echo htmlspecialchars($_POST['gateway']); ?>">
+          <?php echo "<p class='text-danger'>$errGateway</p>";?>
         </div>
       </div>
       <div class="form-group"> 
