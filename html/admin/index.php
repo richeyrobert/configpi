@@ -30,7 +30,8 @@
 
   function isValidIPv4Mask($mask)
   {
-    return ($bin = decbin(ip2long($mask))) && strpos($bin, '0') && !strpos($bin, '01');
+    $bin = decbin(ip2long($mask));
+    return strlen($bin) == 32 && preg_match('/0/', $bin) && !preg_match('/01/', $bin);
   }
 ?>
 <!DOCTYPE html>
