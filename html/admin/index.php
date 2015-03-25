@@ -1,4 +1,5 @@
 <?php
+  var_dump($_POST);
   if ($_POST["submit"]) {
     $host_name = $_POST['host_name'];
     $ip_address = $_POST['ip_address'];
@@ -22,13 +23,13 @@
     
     //Check if valid gateway has been entered
     if (!$_POST['gateway'] || !filter_var($_POST['gateway'], FILTER_VALIDATE_IP)) {
-        $errSubnet_mask = 'Please enter a valid Gateway';
+        $errGateway = 'Please enter a valid Gateway';
     }
   }
 
   function isValidIPv4Mask($mask)
   {
-      return ($bin = decbin(ip2long($mask))) && strpos($bin, '0') && !strpos($bin, '01');
+    return ($bin = decbin(ip2long($mask))) && strpos($bin, '0') && !strpos($bin, '01');
   }
 ?>
 <!DOCTYPE html>
@@ -83,7 +84,7 @@
       </div>
       <div class="form-group"> 
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default">Submit</button>
+          <input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary">
         </div>
       </div>
     </form>
