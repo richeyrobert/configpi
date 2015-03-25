@@ -49,6 +49,8 @@ mv config_files/05-auth.sample /etc/lighttpd/conf-enabled/05-auth.conf
 chmod 644 /etc/lighttpd/conf-enabled/05-auth.conf
 chown root:root /etc/lighttpd/conf-enabled/05-auth.conf
 #
+# Force another lighty reload
+service lighttpd force-reload
 # Now add the username and passwords
 # Get the desired password from the user...
 input_password="fart"
@@ -71,7 +73,7 @@ combined_password="admin:Admin Realm:$input_password"
 md5hash=`printf '%s' "$combined_password"|md5sum|cut -d" " -f1`
 # Now move the password to the user key file...
 touch /etc/lighttpd/lighttpd.user
-echo "admin:$md5hash" >> /etc/lighttpd/lighttpd.user
+echo "admin:Admin Realm:$md5hash" >> /etc/lighttpd/lighttpd.user
 # 3. Move all of the scripts and the web pages into the correct locations
 echo "Making sure all the files are in the proper locations..."
 #
