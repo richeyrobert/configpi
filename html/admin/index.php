@@ -137,6 +137,10 @@
             $("input#gateway").prop('disabled', false);
           }
         });
+        var isDHCP = "<?php echo $dhcp; ?>";
+        if (isDHCP) {
+          $("input#dhcp").prop('checked', true);
+        }
       });
     </script>
   </body>
