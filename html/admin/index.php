@@ -1,6 +1,7 @@
 <?php
   var_dump($_POST);
   if ($_POST["submit"]) {
+    $dhcp = $_POST['dhcp'];
     $host_name = $_POST['host_name'];
     $ip_address = $_POST['ip_address'];
     $subnet_mask = $_POST['subnet_mask'];
@@ -17,12 +18,12 @@
     }
 
     // Check if Subnet Mask has been entered and is valid
-    if (!$_POST['subnet_mask'] || !filter_var($_POST['subnet_mask'], FILTER_VALIDATE_IP)) {
+    if (!$_POST['subnet_mask'] || !isValidIPv4Mask($_POST['gateway'])) {
         $errSubnet_mask = 'Please enter a valid Subnet Mask';
     }
     
     //Check if valid gateway has been entered
-    if (!$_POST['gateway'] || !isValidIPv4Mask($_POST['gateway'])) {
+    if (!$_POST['gateway'] || !filter_var($_POST['subnet_mask'], FILTER_VALIDATE_IP)) {
         $errGateway = 'Please enter a valid Gateway';
     }
   }
