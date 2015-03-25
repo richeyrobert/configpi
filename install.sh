@@ -76,6 +76,8 @@ touch /etc/lighttpd/lighttpd.user
 echo "admin:Admin Realm:$md5hash" >> /etc/lighttpd/lighttpd.user
 # 3. Move all of the scripts and the web pages into the correct locations
 echo "Making sure all the files are in the proper locations..."
+# Lets move the html first...
+cp -R html/* /var/www/
 #
 # 4. Make sure all of the scripts are executable
 echo "Making sure all proper scripts are executable..."
