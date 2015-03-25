@@ -9,8 +9,8 @@
     $error_count = 0;
 
     // See if we need to run the validations or not (is dhcp checked?)
-    if(isset($_POST['dhcp']) && 
-       $_POST['dhcp'] == 'Yes') 
+    if(isset($_POST['dhcp']) &&
+       $_POST['dhcp'] == 'Yes')
     {
         echo "We are DHCP... Skip Validations";
     }
@@ -38,11 +38,6 @@
           $error_count += 1;
       }
     }
-    if ( error_count == 0 ) {
-      // then we might need to show a button that will allow us to apply the network changes.
-      echo("Error Count is: ".$error_count)
-    }
-    
   }
 
   function isValidIPv4Mask($mask)
@@ -77,6 +72,12 @@
     <![endif]-->
   </head>
   <body>
+    <?php
+      if ( $error_count == 0 ) {
+      // then we might need to show a button that will allow us to apply the network changes.
+      echo("Error Count is: ".$error_count);
+    } 
+    ?>
     <h1>Pi Settings</h1>
     <form class="form-horizontal" role="form" method="post" action="index.php">
       <div class="form-group">
