@@ -67,7 +67,7 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
-            <label><input type="checkbox" id="dhcp" value="dhcp">DHCP</label>
+            <label><input type="checkbox" id="dhcp" value="<?php echo htmlspecialchars($_POST['dhcp']); ?>">DHCP</label>
           </div>
         </div>
       </div>
@@ -114,14 +114,12 @@
       $(document).ready(function(){
         $("input#dhcp").click(function () {
           if ($("input#dhcp").prop('checked')) {
-            alert("I am checked!");
             // Now I need to hide the unnecessary elements
             $("input#ip_address").prop('disabled', true);
             $("input#subnet_mask").prop('disabled', true);
             $("input#gateway").prop('disabled', true);
           }
           else {
-            alert("I am not checked.");
             // Now I need to unhide the necessary elements
             $("input#ip_address").prop('disabled', false);
             $("input#subnet_mask").prop('disabled', false);
