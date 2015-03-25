@@ -22,7 +22,7 @@
     }
     
     //Check if valid gateway has been entered
-    if (!$_POST['gateway'] || !filter_var($_POST['gateway'], FILTER_VALIDATE_IP)) {
+    if (!$_POST['gateway'] || !isValidIPv4Mask($_POST['gateway'])) {
         $errGateway = 'Please enter a valid Gateway';
     }
   }
@@ -54,6 +54,13 @@
   <body>
     <h1>Pi Settings</h1>
     <form class="form-horizontal" role="form" method="post" action="index.php">
+      <div class="form-group"> 
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label><input type="checkbox">DHCP</label>
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="host_name">Host Name:</label>
         <div class="col-sm-10">
