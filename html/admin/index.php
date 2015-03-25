@@ -32,16 +32,12 @@
   {
     $good_masks = array("255.255.240.0","255.255.248.0","255.255.252.0","255.255.254.0","255.255.255.0","255.255.255.128","255.255.255.192","255.255.255.224","255.255.255.240","255.255.255.248","255.255.255.252");
     $valid_mask = False;
-    foreach ($good_masks as $mask){
-      if ( $my_mask == $mask ){
+    foreach ($good_masks as $test_mask){
+      if ( $mask == $test_mask ){
         $valid_mask = True;
       }
     }
-    if ($valid_mask){
-      echo("This is a valid Mask.<br>");
-    }else {
-      echo("This is not a valid Mask.<br>");
-    }
+    return $valid_mask
   }
 ?>
 <!DOCTYPE html>
