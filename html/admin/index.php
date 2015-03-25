@@ -67,7 +67,7 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
-            <label><input type="checkbox" id="dhcp" value="<?php echo htmlspecialchars($_POST['dhcp']); ?>">DHCP</label>
+            <label><input type="checkbox" name="dhcp" id="dhcp" value="<?php echo htmlspecialchars($_POST['dhcp']); ?>">DHCP</label>
           </div>
         </div>
       </div>
