@@ -115,9 +115,14 @@
     <script src="../js/bootstrap.min.js"></script>
     <script>
       $(document).ready(function(){
-        $(".dhcp").click(function () {
-            alert("I've been clicked!");
-          });
+        $("input#dhcp").click(function () {
+          if $("input#dhcp").prop('checked'){
+            alert("I am checked!");
+          } else {
+            alert("I am not checked.")
+          }
+            
+        });
       });
     </script>
   </body>
