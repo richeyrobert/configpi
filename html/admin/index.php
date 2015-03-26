@@ -1,7 +1,7 @@
 <?php
   var_dump($_POST);
-  if ($_POST["submit"]) {
-    $dhcp = $_POST['dhcp'];
+  if ($_POST["submit"] == "Submit") {
+    $dhcp = ( isset($_POST['dhcp'] ? "YES" : "NO" );
     $host_name = $_POST['host_name'];
     $ip_address = $_POST['ip_address'];
     $subnet_mask = $_POST['subnet_mask'];
@@ -13,7 +13,6 @@
     $file_gateway = "";
     $file_dhcp = "";
 
-
     // See if we can open the config file
     $myfile = fopen("/var/www/admin/configpi.config", "r+") or die("Unable to open file!");
     while(!feof($myfile)) {
@@ -21,6 +20,24 @@
       // Ignore lines that start with a "#" comment
       if ( substr($this_line, 0, 1) != "#" ){
         $line_array = explode("=", $this_line);
+        // content can either be HOSTNAME, IPADDRESS, SUBNETMASK, GATEWAY, OR DHCP
+        switch ($line_array[0]) {
+          case "HOSTNAME":
+            $file_hostname = $line_array[1];
+            break;
+          case "IPADDRESS":
+            $file_ip = $line_array[1];
+            break;
+          case "SUBNETMASK":
+            $file_subnet = $line_array[1];
+            break;
+          case "GATEWAY":
+            $file_gateway = $line_array[1];
+            break;
+          case "DHCP":
+            $file_dhcp = $line_array[1];
+            break;
+        } 
         var_dump($line_array);
       }
     }
@@ -56,6 +73,8 @@
           $error_count += 1;
       }
     }
+  } elseif ($_POST["submit"] == "Apply Settings") {
+    # code...
   }
 
   function isValidIPv4Mask($mask)
@@ -100,6 +119,7 @@
         echo('      <input id="submit" name="submit" type="submit" value="Apply Settings" class="btn btn-primary">');
         echo('    </div>');
         echo('  </div>');
+        echo('</form>');
       }
     ?>
     <h1>Pi Settings</h1>
