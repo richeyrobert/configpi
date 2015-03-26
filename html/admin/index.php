@@ -264,16 +264,6 @@
         </div>
       </div>
     </form>
-    <?php
-      echo "<br>";
-      echo "POST[host_name] is: ".$_POST['host_name']."<br>";
-      echo "POST[host_name] is set? ".isset($_POST)." is it empty? ".empty($file_hostname)."<br>";
-      echo "<br>";
-      echo "file_hostname is: ".$file_hostname."<br>";
-      echo "file_hostname is set? ".isset($file_hostname)." is it empty? ".empty($file_hostname)."<br>";
-      echo "<br>";
-    ?>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../jquery/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -301,4 +291,13 @@
       });
     </script>
   </body>
+  <?php
+      echo "<br>";
+      echo "POST[host_name] is: ".$_POST['host_name']."<br>";
+      echo "POST[host_name] is set? ".isset($_POST)." is it empty? ".empty($file_hostname)."<br>";
+      echo "<br>";
+      echo "file_hostname is: ".$file_hostname."<br>";
+      echo "file_hostname is set? ".isset($file_hostname)." is it empty? ".empty($file_hostname)."<br>";
+      echo "<br>";
+    ?>
 </html>
