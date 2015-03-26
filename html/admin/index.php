@@ -92,7 +92,7 @@
       // Settings are being applied... reboot with the values in the config file.
 
 
-    } elseif (!(isset($_POST))) {
+    } elseif (!isset($_POST) || empty($_POST)) {
       // we are a new page visit... Extract the current settings from the settings file...
 
       $file_hostname = "";
