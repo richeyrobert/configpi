@@ -14,7 +14,7 @@
     $file_dhcp = "";
 
     // See if we can open the config file
-    $myfile = fopen("/var/www/admin/configpi.config", "r+") or die("Unable to open file!");
+    $myfile = fopen("/var/www/admin/configpi.config", "r") or die("Unable to open file!");
     while(!feof($myfile)) {
       $this_line = fgets($myfile);
       // Ignore lines that start with a "#" comment
@@ -73,8 +73,24 @@
           $error_count += 1;
       }
     }
+    // Then write all of these settings to the config file.
+    $myfile = fopen("/var/www/admin/configpi.config", "w") or die("Unable to open file!");
+    fwrite($myfile, $file_hostname."\n");
+    // See if we have a DHCP situation or not...
+    if ( $dhcp == "YES" ){
+      fwrite($myfile, "DHCP=YES\n");
+    } else {
+      fwrite($myfile, "DHCP=NO\n");
+      fwrite($myfile, "IPADDRESS=".$file_ip."\n");
+      fwrite($myfile, "SUBNETMASK=".$file_subnet."\n");
+      fwrite($myfile, "GATEWAY=".$file_gateway."\n");
+    }
+    fclose($myfile);
+    // TODO: Create a backup file to go back to should things go wrong.
   } elseif ($_POST["submit"] == "Apply Settings") {
-    // We should be doing the submit stuff here...
+    // Settings are being applied... reboot with the values in the config file.
+
+
   }
 
   function isValidIPv4Mask($mask)
