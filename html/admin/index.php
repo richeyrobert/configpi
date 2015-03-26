@@ -249,8 +249,18 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="gateway">Gateway:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="gateway" name="gateway" placeholder="192.168.1.1" value="<?php echo htmlspecialchars($_POST['gateway']); ?>">
-          <?php echo "<p class='text-danger'>$errGateway</p>";?>
+          <input type="text" class="form-control" id="gateway" name="gateway" placeholder="192.168.1.1" value="<?php 
+            if (isset($file_gateway) && !empty($file_gateway)) {
+              echo htmlspecialchars($file_gateway);
+            } elseif (isset($_POST) && !empty($_POST)) {
+              echo htmlspecialchars($_POST['gateway']);
+            } 
+            ?>">
+          <?php 
+            if (isset($errGateway)) {
+              echo "<p class='text-danger'>$errGateway</p>";
+            }
+          ?>
         </div>
       </div>
       <div class="form-group">
