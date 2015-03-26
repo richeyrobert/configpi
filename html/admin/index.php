@@ -93,8 +93,12 @@
 
 
     } else {
-      // we are a new page visit... Extract the current settings from the settings file...
-      echo "Here I am!!!!!!!!";
+      // I don't think we will ever get here.
+      
+    }
+  } else {
+    // This is where we end up on a new visit.
+    echo "Here I am!!!!!!!!";
       $file_hostname = "";
       $file_ip = "";
       $file_subnet = "";
@@ -131,7 +135,6 @@
           echo("<br>Variable line_array dump end. <br>");
         }
       }
-    }
   }
 
 
