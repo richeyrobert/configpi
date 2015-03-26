@@ -1,4 +1,6 @@
 <?php
+  ini_set('display_errors', 'On');
+  error_reporting(E_ALL);
   if (isset($_POST)) {
     echo("Post Variable dump begin: <br>");
     var_dump($_POST);
