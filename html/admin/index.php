@@ -1,136 +1,141 @@
 <?php
-  echo("Post Variable dump begin: <br>");
-  var_dump($_POST);
-  echo("<br>Post Variable dump end.<br>");
-  if ($_POST["submit"] == "Submit") {
-    $dhcp = ( isset($_POST['dhcp']) ? "YES" : "NO" );
-    $host_name = $_POST['host_name'];
-    $ip_address = $_POST['ip_address'];
-    $subnet_mask = $_POST['subnet_mask'];
-    $gateway = $_POST['gateway'];
-    $error_count = 0;
-    $file_hostname = "";
-    $file_ip = "";
-    $file_subnet = "";
-    $file_gateway = "";
-    $file_dhcp = "";
+  if (isset($_POST)) {
+    echo("Post Variable dump begin: <br>");
+    var_dump($_POST);
+    echo("<br>Post Variable dump end.<br>");
+    if ( $_POST["submit"] == "Submit") {
+      $dhcp = ( isset($_POST['dhcp']) ? "YES" : "NO" );
+      $host_name = $_POST['host_name'];
+      $ip_address = $_POST['ip_address'];
+      $subnet_mask = $_POST['subnet_mask'];
+      $gateway = $_POST['gateway'];
+      $error_count = 0;
+      $file_hostname = "";
+      $file_ip = "";
+      $file_subnet = "";
+      $file_gateway = "";
+      $file_dhcp = "";
 
-    // See if we can open the config file
-    $myfile = fopen("/var/www/admin/configpi.config", "r") or die("Unable to open file!");
-    while(!feof($myfile)) {
-      $this_line = fgets($myfile);
-      // Ignore lines that start with a "#" comment
-      if ( substr($this_line, 0, 1) != "#" ){
-        $line_array = explode("=", $this_line);
-        // content can either be HOSTNAME, IPADDRESS, SUBNETMASK, GATEWAY, OR DHCP
-        switch ($line_array[0]) {
-          case "HOSTNAME":
-            $file_hostname = $line_array[1];
-            break;
-          case "IPADDRESS":
-            $file_ip = $line_array[1];
-            break;
-          case "SUBNETMASK":
-            $file_subnet = $line_array[1];
-            break;
-          case "GATEWAY":
-            $file_gateway = $line_array[1];
-            break;
-          case "DHCP":
-            $file_dhcp = $line_array[1];
-            break;
+      // See if we can open the config file
+      $myfile = fopen("/var/www/admin/configpi.config", "r") or die("Unable to open file!");
+      while(!feof($myfile)) {
+        $this_line = fgets($myfile);
+        // Ignore lines that start with a "#" comment
+        if ( substr($this_line, 0, 1) != "#" ){
+          $line_array = explode("=", $this_line);
+          // content can either be HOSTNAME, IPADDRESS, SUBNETMASK, GATEWAY, OR DHCP
+          switch ($line_array[0]) {
+            case "HOSTNAME":
+              $file_hostname = $line_array[1];
+              break;
+            case "IPADDRESS":
+              $file_ip = $line_array[1];
+              break;
+            case "SUBNETMASK":
+              $file_subnet = $line_array[1];
+              break;
+            case "GATEWAY":
+              $file_gateway = $line_array[1];
+              break;
+            case "DHCP":
+              $file_dhcp = $line_array[1];
+              break;
+          }
+          echo("Variable line_array dump begin: <br>");
+          var_dump($line_array);
+          echo("<br>Variable line_array dump end. <br>");
         }
-        echo("Variable line_array dump begin: <br>");
-        var_dump($line_array);
-        echo("<br>Variable line_array dump end. <br>");
       }
-    }
-    fclose($myfile);
+      fclose($myfile);
 
-    // See if we need to run the validations or not (is dhcp checked?)
-    if( $dhcp == 'NO')
-    {
-        // Check if host name has been entered
-      if (!$_POST['host_name']) {
-          $errHostname = 'Please enter the host name';
-          $error_count += 1;
-      }
-      // Check if IP Address has been entered and is valid
-      if (!$_POST['ip_address'] || !filter_var($_POST['ip_address'], FILTER_VALIDATE_IP)) {
-          $errIPAddress = 'Please enter a valid IP Address';
-          $error_count += 1;
-      }
-      // Check if Subnet Mask has been entered and is valid
-      if (!$_POST['subnet_mask'] || !isValidIPv4Mask($_POST['subnet_mask'])) {
-          $errSubnet_mask = 'Please enter a valid Subnet Mask';
-          $error_count += 1;
-      }
-      //Check if valid gateway has been entered
-      if (!$_POST['gateway'] || !filter_var($_POST['gateway'], FILTER_VALIDATE_IP)) {
-          $errGateway = 'Please enter a valid Gateway';
-          $error_count += 1;
-      }
-    }
-    // Then write all of these settings to the config file.
-    $myfile = fopen("/var/www/admin/configpi.config", "w") or die("Unable to open file!");
-    fwrite($myfile, "HOSTNAME=".$host_name."\n");
-    // See if we have a DHCP situation or not...
-    if ( $dhcp == "YES" ){
-      fwrite($myfile, "DHCP=YES\n");
-    } else {
-      fwrite($myfile, "DHCP=NO\n");
-      fwrite($myfile, "IPADDRESS=".$ip_address."\n");
-      fwrite($myfile, "SUBNETMASK=".$subnet_mask."\n");
-      fwrite($myfile, "GATEWAY=".$gateway."\n");
-    }
-    fclose($myfile);
-    // TODO: Create a backup file to go back to should things go wrong.
-  } elseif ($_POST["submit"] == "Apply Settings") {
-    // Settings are being applied... reboot with the values in the config file.
-
-
-  } elseif (!(isset($_POST))) {
-    // we are a new page visit... Extract the current settings from the settings file...
-
-    $file_hostname = "";
-    $file_ip = "";
-    $file_subnet = "";
-    $file_gateway = "";
-    $file_dhcp = "";
-
-    // See if we can open the config file
-    $myfile = fopen("/var/www/admin/configpi.config", "r") or die("Unable to open file!");
-    while(!feof($myfile)) {
-      $this_line = fgets($myfile);
-      // Ignore lines that start with a "#" comment
-      if ( substr($this_line, 0, 1) != "#" ){
-        $line_array = explode("=", $this_line);
-        // content can either be HOSTNAME, IPADDRESS, SUBNETMASK, GATEWAY, OR DHCP
-        switch ($line_array[0]) {
-          case "HOSTNAME":
-            $file_hostname = $line_array[1];
-            break;
-          case "IPADDRESS":
-            $file_ip = $line_array[1];
-            break;
-          case "SUBNETMASK":
-            $file_subnet = $line_array[1];
-            break;
-          case "GATEWAY":
-            $file_gateway = $line_array[1];
-            break;
-          case "DHCP":
-            $file_dhcp = $line_array[1];
-            break;
+      // See if we need to run the validations or not (is dhcp checked?)
+      if( $dhcp == 'NO')
+      {
+          // Check if host name has been entered
+        if (!$_POST['host_name']) {
+            $errHostname = 'Please enter the host name';
+            $error_count += 1;
         }
-        echo("Variable line_array dump begin: <br>");
-        var_dump($line_array);
-        echo("<br>Variable line_array dump end. <br>");
+        // Check if IP Address has been entered and is valid
+        if (!$_POST['ip_address'] || !filter_var($_POST['ip_address'], FILTER_VALIDATE_IP)) {
+            $errIPAddress = 'Please enter a valid IP Address';
+            $error_count += 1;
+        }
+        // Check if Subnet Mask has been entered and is valid
+        if (!$_POST['subnet_mask'] || !isValidIPv4Mask($_POST['subnet_mask'])) {
+            $errSubnet_mask = 'Please enter a valid Subnet Mask';
+            $error_count += 1;
+        }
+        //Check if valid gateway has been entered
+        if (!$_POST['gateway'] || !filter_var($_POST['gateway'], FILTER_VALIDATE_IP)) {
+            $errGateway = 'Please enter a valid Gateway';
+            $error_count += 1;
+        }
       }
+      // Then write all of these settings to the config file.
+      $myfile = fopen("/var/www/admin/configpi.config", "w") or die("Unable to open file!");
+      fwrite($myfile, "HOSTNAME=".$host_name."\n");
+      // See if we have a DHCP situation or not...
+      if ( $dhcp == "YES" ){
+        fwrite($myfile, "DHCP=YES\n");
+      } else {
+        fwrite($myfile, "DHCP=NO\n");
+        fwrite($myfile, "IPADDRESS=".$ip_address."\n");
+        fwrite($myfile, "SUBNETMASK=".$subnet_mask."\n");
+        fwrite($myfile, "GATEWAY=".$gateway."\n");
+      }
+      fclose($myfile);
+      // TODO: Create a backup file to go back to should things go wrong.
+    } elseif ($_POST["submit"] == "Apply Settings") {
+      // Settings are being applied... reboot with the values in the config file.
 
 
+    } elseif (!(isset($_POST))) {
+      // we are a new page visit... Extract the current settings from the settings file...
 
+      $file_hostname = "";
+      $file_ip = "";
+      $file_subnet = "";
+      $file_gateway = "";
+      $file_dhcp = "";
+
+      // See if we can open the config file
+      $myfile = fopen("/var/www/admin/configpi.config", "r") or die("Unable to open file!");
+      while(!feof($myfile)) {
+        $this_line = fgets($myfile);
+        // Ignore lines that start with a "#" comment
+        if ( substr($this_line, 0, 1) != "#" ){
+          $line_array = explode("=", $this_line);
+          // content can either be HOSTNAME, IPADDRESS, SUBNETMASK, GATEWAY, OR DHCP
+          switch ($line_array[0]) {
+            case "HOSTNAME":
+              $file_hostname = $line_array[1];
+              break;
+            case "IPADDRESS":
+              $file_ip = $line_array[1];
+              break;
+            case "SUBNETMASK":
+              $file_subnet = $line_array[1];
+              break;
+            case "GATEWAY":
+              $file_gateway = $line_array[1];
+              break;
+            case "DHCP":
+              $file_dhcp = $line_array[1];
+              break;
+          }
+          echo("Variable line_array dump begin: <br>");
+          var_dump($line_array);
+          echo("<br>Variable line_array dump end. <br>");
+        }
+      }
+    }
   }
+
+
+
+
+
 
   function isValidIPv4Mask($mask)
   {
