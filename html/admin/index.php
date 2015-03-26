@@ -199,7 +199,9 @@
         <label class="control-label col-sm-2" for="host_name">Host Name:</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" id="host_name" name="host_name" placeholder="configPi" value="<?php 
-            if (isset($_POST) && !empty($_POST)) {
+            if (isset($file_hostname) && !empty($file_hostname)) {
+              echo htmlspecialchars($file_hostname);
+            }elsif (isset($_POST) && !empty($_POST)) {
               echo htmlspecialchars($_POST['host_name']);
             } 
             ?>">
