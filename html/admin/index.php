@@ -1,7 +1,7 @@
 <?php
   var_dump($_POST);
   if ($_POST["submit"] == "Submit") {
-    $dhcp = ( isset($_POST['dhcp'] ? "YES" : "NO" );
+    $dhcp = ( isset($_POST['dhcp']) ? "YES" : "NO" );
     $host_name = $_POST['host_name'];
     $ip_address = $_POST['ip_address'];
     $subnet_mask = $_POST['subnet_mask'];
@@ -74,7 +74,7 @@
       }
     }
   } elseif ($_POST["submit"] == "Apply Settings") {
-    # code...
+    // We should be doing the submit stuff here...
   }
 
   function isValidIPv4Mask($mask)
