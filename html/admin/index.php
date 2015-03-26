@@ -19,9 +19,10 @@
     while(!feof($myfile)) {
       $this_line = fgets($myfile);
       // Ignore lines that start with a "#" comment
-      $line_array = explode("=", $this_line)
-      var_dump($line_array)
-
+      if ( substr($this_line, 0, 1) != "#" ){
+        $line_array = explode("=", $this_line);
+        var_dump($line_array);
+      }
     }
     fclose($myfile);
 
