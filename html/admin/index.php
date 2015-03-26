@@ -296,7 +296,7 @@
       echo "POST[host_name] is: ".$_POST['host_name']."<br>";
       echo "POST[host_name] is set? ".isset($_POST)." is it empty? ".empty($file_hostname)."<br>";
       if (isset($file_hostname) && $file_hostname !== '') {
-        echo "condition 1";
+        echo "condition 1... file_hostname = ".$file_hostname."<br>";
       } elseif (isset($_POST) && $_POST['host_name'] !== '') {
         echo "condition 2";
       } 
