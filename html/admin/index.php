@@ -89,6 +89,47 @@
     // Settings are being applied... reboot with the values in the config file.
 
 
+  } elseif (!(isset($_POST))) {
+    // we are a new page visit... Extract the current settings from the settings file...
+
+    $file_hostname = "";
+    $file_ip = "";
+    $file_subnet = "";
+    $file_gateway = "";
+    $file_dhcp = "";
+
+    // See if we can open the config file
+    $myfile = fopen("/var/www/admin/configpi.config", "r") or die("Unable to open file!");
+    while(!feof($myfile)) {
+      $this_line = fgets($myfile);
+      // Ignore lines that start with a "#" comment
+      if ( substr($this_line, 0, 1) != "#" ){
+        $line_array = explode("=", $this_line);
+        // content can either be HOSTNAME, IPADDRESS, SUBNETMASK, GATEWAY, OR DHCP
+        switch ($line_array[0]) {
+          case "HOSTNAME":
+            $file_hostname = $line_array[1];
+            break;
+          case "IPADDRESS":
+            $file_ip = $line_array[1];
+            break;
+          case "SUBNETMASK":
+            $file_subnet = $line_array[1];
+            break;
+          case "GATEWAY":
+            $file_gateway = $line_array[1];
+            break;
+          case "DHCP":
+            $file_dhcp = $line_array[1];
+            break;
+        }
+        echo("Variable line_array dump begin: <br>");
+        var_dump($line_array);
+        echo("<br>Variable line_array dump end. <br>");
+      }
+
+
+
   }
 
   function isValidIPv4Mask($mask)
