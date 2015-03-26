@@ -201,7 +201,7 @@
           <input type="text" class="form-control" id="host_name" name="host_name" placeholder="configPi" value="<?php 
             if (isset($file_hostname) && !empty($file_hostname)) {
               echo htmlspecialchars($file_hostname);
-            }elsif (isset($_POST) && !empty($_POST)) {
+            } elseif (isset($_POST) && !empty($_POST)) {
               echo htmlspecialchars($_POST['host_name']);
             } 
             ?>">
