@@ -79,9 +79,9 @@
       fwrite($myfile, "DHCP=YES\n");
     } else {
       fwrite($myfile, "DHCP=NO\n");
-      fwrite($myfile, "IPADDRESS=".$file_ip."\n");
-      fwrite($myfile, "SUBNETMASK=".$file_subnet."\n");
-      fwrite($myfile, "GATEWAY=".$file_gateway."\n");
+      fwrite($myfile, "IPADDRESS=".$ip_address."\n");
+      fwrite($myfile, "SUBNETMASK=".$subnet_mask."\n");
+      fwrite($myfile, "GATEWAY=".$gateway."\n");
     }
     fclose($myfile);
     // TODO: Create a backup file to go back to should things go wrong.
