@@ -301,7 +301,7 @@
         echo "condition 2";
       } 
       echo "<br>";
-      echo "file_hostname is: ".$file_hostname."<br>";
+      echo "file_hostname is: '".$file_hostname."'<br>";
       echo "file_hostname is set? ".isset($file_hostname)." is it empty? ".empty($file_hostname)."<br>";
       echo "<br>";
     ?>
