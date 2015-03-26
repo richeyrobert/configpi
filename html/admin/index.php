@@ -73,7 +73,7 @@
     }
     // Then write all of these settings to the config file.
     $myfile = fopen("/var/www/admin/configpi.config", "w") or die("Unable to open file!");
-    fwrite($myfile, $host_name."\n");
+    fwrite($myfile, "HOSTNAME=".$host_name."\n");
     // See if we have a DHCP situation or not...
     if ( $dhcp == "YES" ){
       fwrite($myfile, "DHCP=YES\n");
