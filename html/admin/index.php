@@ -1,5 +1,7 @@
 <?php
+  echo("Post Variable dump begin: <br>");
   var_dump($_POST);
+  echo("Post Variable dump end.<br>");
   if ($_POST["submit"] == "Submit") {
     $dhcp = ( isset($_POST['dhcp']) ? "YES" : "NO" );
     $host_name = $_POST['host_name'];
@@ -37,8 +39,10 @@
           case "DHCP":
             $file_dhcp = $line_array[1];
             break;
-        } 
+        }
+        echo("Variable $line_array dump begin: <br>");
         var_dump($line_array);
+        echo("Variable $line_array dump end. <br>");
       }
     }
     fclose($myfile);
