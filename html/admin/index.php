@@ -8,6 +8,11 @@
     $gateway = $_POST['gateway'];
     $error_count = 0;
 
+    // See if we can open the config file
+    $myfile = fopen("configpi.config", "r+") or die("Unable to open file!");
+    echo fgets($myfile);
+    fclose($myfile);
+
     // See if we need to run the validations or not (is dhcp checked?)
     if(isset($_POST['dhcp']) &&
        $_POST['dhcp'] == 'Yes')
