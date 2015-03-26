@@ -18,7 +18,9 @@
     $myfile = fopen("/var/www/admin/configpi.config", "r+") or die("Unable to open file!");
     while(!feof($myfile)) {
       $this_line = fgets($myfile);
-      echo fgets($myfile) . "<br>";
+      // Ignore lines that start with a "#" comment
+      $line_array = explode("=", $this_line)
+      var_dump($line_array)
 
     }
     fclose($myfile);
