@@ -43,9 +43,6 @@
               $file_dhcp = $line_array[1];
               break;
           }
-          echo("Variable line_array dump begin: <br>");
-          var_dump($line_array);
-          echo("<br>Variable line_array dump end. <br>");
         }
       }
       fclose($myfile);
@@ -90,7 +87,7 @@
       // TODO: Create a backup file to go back to should things go wrong.
     } elseif (isset($_POST) && $_POST["submit"] == "Apply Settings") {
       // Settings are being applied... reboot with the values in the config file.
-
+      echo "I am submitting the settings.... Please wait."
 
     } else {
       // I don't think we will ever get here.
@@ -136,11 +133,6 @@
         }
       }
   }
-
-
-
-
-
 
   function isValidIPv4Mask($mask)
   {
