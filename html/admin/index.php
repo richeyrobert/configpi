@@ -10,8 +10,16 @@
 
     // See if we can open the config file
     $myfile = fopen("/var/www/admin/configpi.config", "r+") or die("Unable to open file!");
-    echo fgets($myfile);
+    while(!feof($myfile)) {
+      echo fgets($myfile) . "<br>";
+    }
     fclose($myfile);
+
+
+
+
+
+
 
     // See if we need to run the validations or not (is dhcp checked?)
     if(isset($_POST['dhcp']) &&

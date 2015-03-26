@@ -84,6 +84,7 @@ echo "Making sure all proper scripts are executable..."
 #
 # 5. Make sure all of the files have the proper permissions
 echo "Making sure all of the files have the proper permissions..."
+chown www-data:www-data /var/www/admin/configpi.config
 #
 # 6. Make the necessary changes to any config files
 echo "Making the necessary changes to any config files..."
