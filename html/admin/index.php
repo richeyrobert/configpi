@@ -201,7 +201,7 @@
           }
         });
         var isDHCP = "<?php echo $dhcp; ?>";
-        if (isDHCP) {
+        if (isDHCP == "YES") {
           $("input#dhcp").prop('checked', true);
         }
       });
