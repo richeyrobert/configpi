@@ -75,11 +75,11 @@
     <?php
       if ( $_POST["submit"] && $error_count == 0 ) {
         // then we might need to show a button that will allow us to apply the network changes.
-        echo('<form class="form-horizontal" role="form" method="post" action="apply_settings.php">');
+        echo('<form class="form-horizontal" role="form" method="post" action="index.php">');
         echo('  <h2>Apply Settings</h1>')
         echo('  <div class="form-group">');
         echo('    <div class="col-sm-offset-2 col-sm-10">');
-        echo('      <input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary">');
+        echo('      <input id="submit" name="submit" type="submit" value="Apply Settings" class="btn btn-primary">');
         echo('    </div>');
         echo('  </div>');
       }
@@ -123,7 +123,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary">
+          <input id="submit" name="submit" type="submit" value="Submit" class="btn btn-primary">
         </div>
       </div>
     </form>
