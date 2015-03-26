@@ -7,19 +7,21 @@
     $subnet_mask = $_POST['subnet_mask'];
     $gateway = $_POST['gateway'];
     $error_count = 0;
+    $file_hostname = "";
+    $file_ip = "";
+    $file_subnet = "";
+    $file_gateway = "";
+    $file_dhcp = "";
+
 
     // See if we can open the config file
     $myfile = fopen("/var/www/admin/configpi.config", "r+") or die("Unable to open file!");
     while(!feof($myfile)) {
+      $this_line = fgets($myfile);
       echo fgets($myfile) . "<br>";
+
     }
     fclose($myfile);
-
-
-
-
-
-
 
     // See if we need to run the validations or not (is dhcp checked?)
     if(isset($_POST['dhcp']) &&
