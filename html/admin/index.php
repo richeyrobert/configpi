@@ -44,14 +44,8 @@
     fclose($myfile);
 
     // See if we need to run the validations or not (is dhcp checked?)
-    if(isset($_POST['dhcp']) &&
-       $_POST['dhcp'] == 'Yes')
+    if( $dhcp == 'NO')
     {
-        echo "We are DHCP... Skip Validations";
-    }
-    else
-    {
-        echo "We are not DHCP... Run Validations";
         // Check if host name has been entered
       if (!$_POST['host_name']) {
           $errHostname = 'Please enter the host name';
