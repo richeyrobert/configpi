@@ -40,9 +40,9 @@
             $file_dhcp = $line_array[1];
             break;
         }
-        echo("Variable $line_array dump begin: <br>");
+        echo("Variable line_array dump begin: <br>");
         var_dump($line_array);
-        echo("<br>Variable $line_array dump end. <br>");
+        echo("<br>Variable line_array dump end. <br>");
       }
     }
     fclose($myfile);
