@@ -215,15 +215,35 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="ip_address">IP Address:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="ip_address" name="ip_address" placeholder="192.168.1.20" value="<?php echo htmlspecialchars($_POST['ip_address']); ?>">
-          <?php echo "<p class='text-danger'>$errIPAddress</p>";?>
+          <input type="text" class="form-control" id="ip_address" name="ip_address" placeholder="192.168.1.20" value="<?php 
+            if (isset($file_ip) && !empty($file_ip)) {
+              echo htmlspecialchars($file_ip);
+            } elseif (isset($_POST) && !empty($_POST)) {
+              echo htmlspecialchars($_POST['ip_address']);
+            } 
+            ?>">
+          <?php 
+            if (isset($errIPAddress)) {
+              echo "<p class='text-danger'>$errIPAddress</p>";
+            }
+          ?>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="subnet_mask">Subnet Mask:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="subnet_mask" name="subnet_mask" placeholder="255.255.255.0" value="<?php echo htmlspecialchars($_POST['subnet_mask']); ?>">
-          <?php echo "<p class='text-danger'>$errSubnet_mask</p>";?>
+          <input type="text" class="form-control" id="subnet_mask" name="subnet_mask" placeholder="255.255.255.0" value="<?php
+            if (isset($file_subnet) && !empty($file_subnet)) {
+              echo htmlspecialchars($file_subnet);
+            } elseif (isset($_POST) && !empty($_POST)) {
+              echo htmlspecialchars($_POST['subnet_mask']);
+            } 
+            ?>">
+          <?php 
+            if (isset($errSubnet_mask)) {
+              echo "<p class='text-danger'>$errSubnet_mask</p>";
+            }
+          ?>
         </div>
       </div>
       <div class="form-group">
