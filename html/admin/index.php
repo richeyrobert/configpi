@@ -283,6 +283,10 @@
         var isDHCP = "<?php echo $dhcp; ?>";
         if (isDHCP == "YES") {
           $("input#dhcp").prop('checked', true);
+          // Now I need to disable the corresponding elements
+          $("input#ip_address").prop('disabled', true);
+          $("input#subnet_mask").prop('disabled', true);
+          $("input#gateway").prop('disabled', true);
         }
       });
     </script>
