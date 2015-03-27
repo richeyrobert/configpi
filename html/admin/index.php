@@ -87,10 +87,12 @@
       // TODO: Create a backup file to go back to should things go wrong.
     } elseif (isset($_POST) && $_POST["submit"] == "Apply Settings") {
       // Settings are being applied... reboot with the values in the config file.
+      $error_count = 0;
       echo "I am submitting the settings.... Please wait.";
 
     } else {
       // I don't think we will ever get here.
+      echo "We actually got here!";
       
     }
   } else {
