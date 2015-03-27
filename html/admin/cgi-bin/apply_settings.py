@@ -9,8 +9,8 @@ dhcp = ""
 ip_address = ""
 subnet_mask = ""
 gateway = ""
-network = ""
-broadcast = ""
+#network = ""
+#broadcast = ""
 dns_nameservers = ""
 
 # Let's try to get some other information from the IP Address
