@@ -1,3 +1,3 @@
 <?php
-	echo system('mycgi.cgi')
+	echo system('mycgi.cgi');
 ?>
