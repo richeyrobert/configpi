@@ -95,7 +95,6 @@
     }
   } else {
     // This is where we end up on a new visit.
-    echo "Here I am!!!!!!!!";
       $file_hostname = "";
       $file_ip = "";
       $file_subnet = "";
