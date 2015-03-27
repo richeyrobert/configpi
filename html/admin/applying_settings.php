@@ -1,3 +1,4 @@
 <?php
-	echo system('mycgi.cgi');
+	echo system('../cgi-bin/testing.py');
+	header("Location: ../cgi-bin/testing.py");
 ?>
