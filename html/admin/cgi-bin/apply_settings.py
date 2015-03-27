@@ -1,5 +1,8 @@
 #!/usr/bin/python
 #
+# We need to import some stuff
+import ipaddr as ipaddress
+import iptools
 # We need some variables for later
 host_name = ""
 dhcp = ""
@@ -9,6 +12,11 @@ gateway = ""
 network = ""
 broadcast = ""
 dns_nameservers = ""
+
+# Let's try to get some other information from the IP Address
+net_array = iptools.ipv4.subnet2block(ip_address + '/' + subnet_mask)
+network = net_array[0]
+broadcast = net_array[1]
 
 # This is the read file function
 with open("/var/www/admin/configpi.config") as settings_from_web:
@@ -41,9 +49,9 @@ with open("/var/www/admin/new-config.txt", "w") as real_settings_file:
   	real_settings_file.write('address ' + ip_address  + '\n')
   	real_settings_file.write('netmask ' + subnet_mask + '\n')
   	real_settings_file.write('network ' + '\n')
-  	real_settings_file.write('broadcast' + broadcast + '\n')
-  	real_settings_file.write('gateway' + gateway + '\n')
-  	real_settings_file.write('dns-nameservers' + dns_nameservers + '\n')
+  	real_settings_file.write('broadcast ' + broadcast + '\n')
+  	real_settings_file.write('gateway ' + gateway + '\n')
+  	real_settings_file.write('dns-nameservers ' + dns_nameservers + '\n')
 
   elif "YES" in dhcp:
   	real_settings_file.write('iface eth0 inet dhcp\n')

@@ -29,7 +29,9 @@ fi
 #
 # 2. Make sure that the proper packages are installed
 echo "Making sure that the proper packages are installed..."
-apt-get install -y lighttpd php5-cgi #< Insert the proper packages here >
+apt-get install -y lighttpd php5-cgi python-ipaddr python-pip #< Insert the proper packages here >
+# Need to instal a python package
+pip install iptools
 # Enable the CGI module for lighty
 lighty-enable-mod cgi
 lighty-enable-mod fastcgi 
