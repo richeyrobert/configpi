@@ -30,7 +30,7 @@ with open("/var/www/admin/configpi.config") as settings_from_web:
   		print "We should never get here "+line
 
 # This is the write file function
-with open("/etc/network/interfaces", "a") as real_settings_file:
+with open("/var/www/admin/new-config.txt", "a") as real_settings_file:
   real_settings_file.write('Hello\n')
 
 # Sample interfaces file
