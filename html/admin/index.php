@@ -89,6 +89,9 @@
       // Settings are being applied... reboot with the values in the config file.
       $error_count = 0;
       echo "I am submitting the settings.... Please wait.";
+      header("Location: applying_settings.php");
+      /* Make sure that code below does not get executed when we redirect. */
+      exit;
 
     } else {
       // I don't think we will ever get here.
