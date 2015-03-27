@@ -86,6 +86,7 @@ chmod 755 /var/www/admin/cgi-bin/apply_settings.py
 # 5. Make sure all of the files have the proper permissions
 echo "Making sure all of the files have the proper permissions..."
 chown www-data:www-data /var/www/admin/configpi.config
+chown www-data:www-data /var/www/admin/new-config.txt
 chown www-data:www-data /var/www/admin/cgi-bin/apply_settings.py
 #
 # 6. Make the necessary changes to any config files

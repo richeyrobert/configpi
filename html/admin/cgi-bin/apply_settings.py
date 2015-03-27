@@ -3,9 +3,12 @@
 # We need some variables for later
 host_name = ""
 dhcp = ""
-ip_addres = ""
+ip_address = ""
 subnet_mask = ""
 gateway = ""
+network = ""
+broadcast = ""
+dns_nameservers = ""
 
 # This is the read file function
 with open("/var/www/admin/configpi.config") as settings_from_web:
@@ -18,8 +21,8 @@ with open("/var/www/admin/configpi.config") as settings_from_web:
   		dhcp = line.split("=")[1]
   		print "This is the DHCP Line " + dhcp
   	elif "IPADDRESS" in line:
-  		ip_addres = line.split("=")[1]
-  		print "This is the IP Address Line " + ip_addres
+  		ip_address = line.split("=")[1]
+  		print "This is the IP Address Line " + ip_address
   	elif "SUBNETMASK" in line:
   		subnet_mask = line.split("=")[1]
   		print "This is the Subnet Mask Line " + subnet_mask
@@ -30,8 +33,20 @@ with open("/var/www/admin/configpi.config") as settings_from_web:
   		print "We should never get here "+line
 
 # This is the write file function
-with open("/var/www/admin/new-config.txt", "a") as real_settings_file:
-  real_settings_file.write('Hello\n')
+with open("/var/www/admin/new-config.txt", "w") as real_settings_file:
+  real_settings_file.write('# Automatically generated ethernet settings.\n')
+  real_settings_file.write('iface lo inet loopback\n')
+  if dhcp == "NO":
+  	real_settings_file.write('iface eth0 inet static\n')
+  	real_settings_file.write('address ' + ip_address  + '\n')
+  	real_settings_file.write('netmask ' + subnet_mask + '\n')
+  	real_settings_file.write('network ' + '\n')
+  	real_settings_file.write('broadcast' + broadcast + '\n')
+  	real_settings_file.write('gateway' + gateway + '\n')
+  	real_settings_file.write('dns-nameservers' + dns_nameservers + '\n')
+
+  elif dchp == "YES":
+  	real_settings_file.write('iface eth0 inet dhcp\n')
 
 # Sample interfaces file
 # iface lo inet loopback
