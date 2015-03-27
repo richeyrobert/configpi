@@ -13,12 +13,6 @@ network = ""
 broadcast = ""
 dns_nameservers = ""
 
-# Let's try to get some other information from the IP Address
-net_info = str(iptools.ipv4.subnet2block(ip_address + '/' + subnet_mask))
-net_array = net_info.split(",")
-network = net_array[0].trim()
-broadcast = net_array[1].trim()
-
 # This is the read file function
 with open("/var/www/admin/configpi.config") as settings_from_web:
   for line in settings_from_web:
@@ -40,6 +34,11 @@ with open("/var/www/admin/configpi.config") as settings_from_web:
   		print "This is the Gateway Line " + gateway
   	else:
   		print "We should never get here "+line
+# Let's try to get some other information from the IP Address
+net_info = str(iptools.ipv4.subnet2block(ip_address + '/' + subnet_mask))
+net_array = net_info.split(",")
+network = net_array[0].strip()
+broadcast = net_array[1].strip()
 
 # This is the write file function
 with open("/var/www/admin/new-config.txt", "w") as real_settings_file:
