@@ -15,19 +15,19 @@ with open("/var/www/admin/configpi.config") as settings_from_web:
   for line in settings_from_web:
   	# Lets figure out what we are dealing with
   	if "HOSTNAME" in line:
-  		host_name = line.split("=")[1]
+  		host_name = line.split("=")[1].strip()
   		print "This is the Host Name Line " + host_name
   	elif "DHCP" in line:
-  		dhcp = line.split("=")[1]
+  		dhcp = line.split("=")[1].strip()
   		print "This is the DHCP Line " + dhcp
   	elif "IPADDRESS" in line:
-  		ip_address = line.split("=")[1]
+  		ip_address = line.split("=")[1].strip()
   		print "This is the IP Address Line " + ip_address
   	elif "SUBNETMASK" in line:
-  		subnet_mask = line.split("=")[1]
+  		subnet_mask = line.split("=")[1].strip()
   		print "This is the Subnet Mask Line " + subnet_mask
   	elif "GATEWAY" in line:
-  		gateway = line.split("=")[1]
+  		gateway = line.split("=")[1].strip()
   		print "This is the Gateway Line " + gateway
   	else:
   		print "We should never get here "+line
