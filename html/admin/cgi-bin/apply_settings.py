@@ -47,7 +47,7 @@ with open("/var/www/admin/new-config.txt", "w") as real_settings_file:
   	real_settings_file.write('iface eth0 inet static\n')
   	real_settings_file.write('address ' + ip_address  + '\n')
   	real_settings_file.write('netmask ' + subnet_mask + '\n')
-  	real_settings_file.write('network ' + '\n')
+  	real_settings_file.write('network ' + network + '\n')
   	real_settings_file.write('broadcast ' + broadcast + '\n')
   	real_settings_file.write('gateway ' + gateway + '\n')
   	real_settings_file.write('dns-nameservers ' + dns_nameservers + '\n')
