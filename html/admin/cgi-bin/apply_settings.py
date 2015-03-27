@@ -30,8 +30,8 @@ with open("/var/www/admin/configpi.config") as settings_from_web:
   		print "We should never get here "+line
 
 # This is the write file function
- with open('somefile.txt', 'w') as real_settings_file:
-     real_settings_file.write('Hello\n')
+with open('somefile.txt', 'w') as real_settings_file:
+  real_settings_file.write('Hello\n')
 
 print "Content-Type: text/html\n\n"
 print '<html><head><meta content="text/html; charset=UTF-8" />'
