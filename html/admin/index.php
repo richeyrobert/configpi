@@ -28,19 +28,19 @@
           // content can either be HOSTNAME, IPADDRESS, SUBNETMASK, GATEWAY, OR DHCP
           switch ($line_array[0]) {
             case "HOSTNAME":
-              $file_hostname = $line_array[1];
+              $file_hostname = trim($line_array[1]);
               break;
             case "IPADDRESS":
-              $file_ip = $line_array[1];
+              $file_ip = trim($line_array[1]);
               break;
             case "SUBNETMASK":
-              $file_subnet = $line_array[1];
+              $file_subnet = trim($line_array[1]);
               break;
             case "GATEWAY":
-              $file_gateway = $line_array[1];
+              $file_gateway = trim($line_array[1]);
               break;
             case "DHCP":
-              $file_dhcp = $line_array[1];
+              $file_dhcp = trim($line_array[1]);
               break;
           }
         }
@@ -112,19 +112,19 @@
           // content can either be HOSTNAME, IPADDRESS, SUBNETMASK, GATEWAY, OR DHCP
           switch ($line_array[0]) {
             case "HOSTNAME":
-              $file_hostname = $line_array[1];
+              $file_hostname = trim($line_array[1]);
               break;
             case "IPADDRESS":
-              $file_ip = $line_array[1];
+              $file_ip = trim($line_array[1]);
               break;
             case "SUBNETMASK":
-              $file_subnet = $line_array[1];
+              $file_subnet = trim($line_array[1]);
               break;
             case "GATEWAY":
-              $file_gateway = $line_array[1];
+              $file_gateway = trim($line_array[1]);
               break;
             case "DHCP":
-              $file_dhcp = $line_array[1];
+              $file_dhcp = trim($line_array[1]);
               break;
           }
           echo("Variable line_array dump begin: <br>");
