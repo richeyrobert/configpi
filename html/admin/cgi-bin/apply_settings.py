@@ -49,16 +49,16 @@ with open("/var/www/admin/new-config.txt", "w") as real_settings_file:
   	real_settings_file.write('iface eth0 inet dhcp\n')
   else:
   	# We should never reach this point
-
-# Sample interfaces file
-# iface lo inet loopback
-# iface eth0 inet static
-# address 172.16.19.20
-# netmask 255.255.254.0
-# network 172.16.18.0
-# broadcast 172.16.19.255
-# gateway 172.16.18.1
-# dns-nameservers 199.21.205.250 8.8.8.8
+  	print "We should never reach this point."
+	# Sample interfaces file
+	# iface lo inet loopback
+	# iface eth0 inet static
+	# address 172.16.19.20
+	# netmask 255.255.254.0
+	# network 172.16.18.0
+	# broadcast 172.16.19.255
+	# gateway 172.16.18.1
+	# dns-nameservers 199.21.205.250 8.8.8.8
 
 
 print "Content-Type: text/html\n\n"
