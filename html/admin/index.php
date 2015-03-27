@@ -127,9 +127,6 @@
               $file_dhcp = trim($line_array[1]);
               break;
           }
-          echo("Variable line_array dump begin: <br>");
-          var_dump($line_array);
-          echo("<br>Variable line_array dump end. <br>");
         }
       }
   }
@@ -291,19 +288,4 @@
       });
     </script>
   </body>
-  <?php
-      echo "<br>";
-      echo "POST[host_name] is: ".$_POST['host_name']."<br>";
-      echo "POST[host_name] is set? ".isset($_POST)." is it empty? ".empty($file_hostname)."<br>";
-      if (isset($file_hostname) && $file_hostname !== '') {
-        echo "condition 1... file_hostname = ".$file_hostname."<br>";
-        echo "string length = ".strlen($file_hostname)."<br>";
-      } elseif (isset($_POST) && $_POST['host_name'] !== '') {
-        echo "condition 2";
-      } 
-      echo "<br>";
-      echo "file_hostname is: '".$file_hostname."'<br>";
-      echo "file_hostname is set? ".isset($file_hostname)." is it empty? ".empty($file_hostname)."<br>";
-      echo "<br>";
-    ?>
 </html>
