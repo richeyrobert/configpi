@@ -14,9 +14,10 @@ broadcast = ""
 dns_nameservers = ""
 
 # Let's try to get some other information from the IP Address
-net_array = iptools.ipv4.subnet2block(ip_address + '/' + subnet_mask)
-network = print net_array[0]
-broadcast = print net_array[1]
+net_info = str(iptools.ipv4.subnet2block(ip_address + '/' + subnet_mask))
+net_array = net_info.split(",")
+network = net_array[0].trim()
+broadcast = net_array[1].trim()
 
 # This is the read file function
 with open("/var/www/admin/configpi.config") as settings_from_web:
