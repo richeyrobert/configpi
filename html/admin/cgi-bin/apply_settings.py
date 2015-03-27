@@ -9,14 +9,14 @@ dhcp = ""
 ip_address = ""
 subnet_mask = ""
 gateway = ""
-#network = ""
-#broadcast = ""
+network = ""
+broadcast = ""
 dns_nameservers = ""
 
 # Let's try to get some other information from the IP Address
 net_array = iptools.ipv4.subnet2block(ip_address + '/' + subnet_mask)
-network = net_array[0]
-broadcast = net_array[1]
+network = print net_array[0]
+broadcast = print net_array[1]
 
 # This is the read file function
 with open("/var/www/admin/configpi.config") as settings_from_web:
