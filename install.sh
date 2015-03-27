@@ -90,7 +90,18 @@ chown www-data:www-data /var/www/admin/cgi-bin/apply_settings.py
 #
 # 6. Make the necessary changes to any config files
 echo "Making the necessary changes to any config files..."
-#
+# Change the line: $HTTP["url"] =~ "^/cgi-bin/" { 
+# to $HTTP["url"] =~ "^/admin/cgi-bin/" { 
+# in the file /etc/lighttpd/conf-enabled/10-cgi.conf 
+sed -i '
+/\$HTTP\["url"] =~ "\^\/cgi-bin\/" {/ c\
+$HTTP["url"] =~ "^/admin/cgi-bin/" {' /etc/lighttpd/conf-enabled/10-cgi.conf
+# Change the line:        cgi.assign = ( "" => "" )
+# in the file /etc/lighttpd/conf-enabled/10-cgi.conf 
+# to:        cgi.assign = ( ".py" => "/usr/bin/python" )
+sed -i '
+/[[:space:]]cgi\.assign\s\=\s.\s\"\"\s\=>\s\"\"\s./ c\
+        cgi.assign = ( ".py" => "/usr/bin/python" )' /etc/lighttpd/conf-enabled/10-cgi.conf
 # 7. Make the default usernames and passwords for the web interface
 # Prompt user for username and password and password confirmation...
 echo "Creating the default usernames and passwords..."
