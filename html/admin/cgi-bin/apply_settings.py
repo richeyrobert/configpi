@@ -11,7 +11,7 @@ subnet_mask = ""
 gateway = ""
 network = ""
 broadcast = ""
-dns_nameservers = ""
+dns_nameservers = "8.8.8.8"
 
 # This is the read file function
 with open("/var/www/admin/configpi.config") as settings_from_web:
@@ -40,7 +40,7 @@ network = net_info[0].strip()
 broadcast = net_info[1].strip()
 
 # This is the write file function
-with open("/var/www/admin/new-config.txt", "w") as real_settings_file:
+with open("/var/www/admin/ip-config.txt", "w") as real_settings_file:
   real_settings_file.write('# Automatically generated ethernet settings.\n')
   real_settings_file.write('iface lo inet loopback\n')
   if "NO" in dhcp:
@@ -66,6 +66,8 @@ with open("/var/www/admin/new-config.txt", "w") as real_settings_file:
 	# broadcast 172.16.19.255
 	# gateway 172.16.18.1
 	# dns-nameservers 199.21.205.250 8.8.8.8
+with open("/var/www/admin/host-config.txt", "w") as real_settings_file:
+  real_settings_file.write('# Automatically generated ethernet settings.\n')
 
 
 print "Content-Type: text/html\n\n"

@@ -53,6 +53,9 @@ chown root:root /etc/lighttpd/conf-enabled/05-auth.conf
 #
 # Force another lighty reload
 service lighttpd force-reload
+# 3. Make the default usernames and passwords for the web interface
+# Prompt user for username and password and password confirmation...
+echo "Creating the default usernames and passwords..."
 # Now add the username and passwords
 # Get the desired password from the user...
 input_password="fart"
@@ -76,22 +79,25 @@ md5hash=`printf '%s' "$combined_password"|md5sum|cut -d" " -f1`
 # Now move the password to the user key file...
 touch /etc/lighttpd/lighttpd.user
 echo "admin:Admin Realm:$md5hash" >> /etc/lighttpd/lighttpd.user
-# 3. Move all of the scripts and the web pages into the correct locations
+# 4. Move all of the scripts and the web pages into the correct locations
 echo "Making sure all the files are in the proper locations..."
 # Lets move the html first...
 cp -R html/* /var/www/
 #
-# 4. Make sure all of the scripts are executable
+# Move the settings_applier script to the proper location
+
+# 5. Make sure all of the scripts are executable
 echo "Making sure all proper scripts are executable..."
 chmod 755 /var/www/admin/cgi-bin/apply_settings.py
 #
-# 5. Make sure all of the files have the proper permissions
+# 6. Make sure all of the files have the proper permissions
 echo "Making sure all of the files have the proper permissions..."
 chown www-data:www-data /var/www/admin/configpi.config
-chown www-data:www-data /var/www/admin/new-config.txt
+chown www-data:www-data /var/www/admin/ip-config.txt
+chown www-data:www-data /var/www/admin/host-config.txt
 chown www-data:www-data /var/www/admin/cgi-bin/apply_settings.py
 #
-# 6. Make the necessary changes to any config files
+# 7. Make the necessary changes to any config files
 echo "Making the necessary changes to any config files..."
 # Change the line: $HTTP["url"] =~ "^/cgi-bin/" { 
 # to $HTTP["url"] =~ "^/admin/cgi-bin/" { 
@@ -105,10 +111,16 @@ $HTTP["url"] =~ "^/admin/cgi-bin/" {' /etc/lighttpd/conf-enabled/10-cgi.conf
 sed -i '
 /[[:space:]]cgi\.assign\s\=\s.\s\"\"\s\=>\s\"\"\s./ c\
         cgi.assign = ( ".py" => "/usr/bin/python" )' /etc/lighttpd/conf-enabled/10-cgi.conf
-# 7. Make the default usernames and passwords for the web interface
-# Prompt user for username and password and password confirmation...
-echo "Creating the default usernames and passwords..."
 #
+# Now add the necessary changes to the visudo file to allow the script to run as root.
+
+
+
+
+
+
+
+
 # 8. Restart all of the necessary services
 echo "Restarting all necessary services..."
 #
