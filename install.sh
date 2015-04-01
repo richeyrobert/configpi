@@ -83,12 +83,14 @@ echo "admin:Admin Realm:$md5hash" >> /etc/lighttpd/lighttpd.user
 echo "Making sure all the files are in the proper locations..."
 # Lets move the html first...
 cp -R html/* /var/www/
+cp config_files/settings_applier.sh /usr/local/bin/settings_applier
 #
 # Move the settings_applier script to the proper location
 
 # 5. Make sure all of the scripts are executable
 echo "Making sure all proper scripts are executable..."
 chmod 755 /var/www/admin/cgi-bin/apply_settings.py
+chmod 4755 /usr/local/bin/settings_applier
 #
 # 6. Make sure all of the files have the proper permissions
 echo "Making sure all of the files have the proper permissions..."
@@ -96,12 +98,14 @@ chown www-data:www-data /var/www/admin/configpi.config
 chown www-data:www-data /var/www/admin/ip-config.txt
 chown www-data:www-data /var/www/admin/host-config.txt
 chown www-data:www-data /var/www/admin/cgi-bin/apply_settings.py
+chown root:root /usr/local/bin/settings_applier
 #
 # 7. Make the necessary changes to any config files
 echo "Making the necessary changes to any config files..."
 # Change the line: $HTTP["url"] =~ "^/cgi-bin/" { 
 # to $HTTP["url"] =~ "^/admin/cgi-bin/" { 
 # in the file /etc/lighttpd/conf-enabled/10-cgi.conf 
+echo "Applying settings to the lighty config files..."
 sed -i '
 /\$HTTP\["url"] =~ "\^\/cgi-bin\/" {/ c\
 $HTTP["url"] =~ "^/admin/cgi-bin/" {' /etc/lighttpd/conf-enabled/10-cgi.conf
