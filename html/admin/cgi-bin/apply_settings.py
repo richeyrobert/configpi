@@ -71,8 +71,11 @@ with open("/var/www/admin/ip-config.txt", "w") as real_settings_file:
 # We have to edit two separate files to do this:
 # In /etc/hosts we need to edit the line '127.0.1.1     whatever' to '172.0.1.1     new hostname'
 # In /etc/hostname we need to change the first line from 'old hostname to newhostname'
+# The immediately proceeding step might be unnecessary...
 with open("/var/www/admin/host-config.txt", "w") as host_file:
-  real_settings_file.write('# Automatically generated ethernet settings.\n')
+  host_file.write('# Automatically generated ethernet settings.\n')
+  host_file.write(host_name)
+
 
 
 
