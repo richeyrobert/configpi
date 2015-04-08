@@ -24,21 +24,21 @@ with open("/var/www/admin/configpi.config") as settings_from_web:
   	# Lets figure out what we are dealing with
   	if "HOSTNAME" in line:
   		host_name = line.split("=")[1].strip()
-  		print "This is the Host Name Line " + host_name
+  		print "This is the Host Name Line " + host_name + "<br>"
   	elif "DHCP" in line:
   		dhcp = line.split("=")[1].strip()
-  		print "This is the DHCP Line " + dhcp
+  		print "This is the DHCP Line " + dhcp + "<br>"
   	elif "IPADDRESS" in line:
   		ip_address = line.split("=")[1].strip()
-  		print "This is the IP Address Line " + ip_address
+  		print "This is the IP Address Line " + ip_address + "<br>"
   	elif "SUBNETMASK" in line:
   		subnet_mask = line.split("=")[1].strip()
-  		print "This is the Subnet Mask Line " + subnet_mask
+  		print "This is the Subnet Mask Line " + subnet_mask + "<br>"
   	elif "GATEWAY" in line:
   		gateway = line.split("=")[1].strip()
-  		print "This is the Gateway Line " + gateway
+  		print "This is the Gateway Line " + gateway + "<br>"
   	else:
-  		print "We should never get here "+line
+  		print "We should never get here "+line + "<br>"
 # Let's try to get some other information from the IP Address
 net_info = iptools.ipv4.subnet2block(ip_address + '/' + subnet_mask)
 network = net_info[0].strip()
