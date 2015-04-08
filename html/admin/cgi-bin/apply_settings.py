@@ -77,19 +77,31 @@ with open("/var/www/admin/ip-config.txt", "w") as real_settings_file:
 # We have to edit two separate files to do this:
 # In /etc/hosts we need to edit the line '127.0.1.1     whatever' to '172.0.1.1     new hostname'
 # In /etc/hostname we need to change the first line from 'old hostname to newhostname'
+
+# Variable to hold the new string that we will write to the /etc/hosts file...
+hosts_file_string = []
+
+# Open the existing hosts file and read it into the hosts_file_string variable...
+# Regex to find the host name in the /etc/hosts file = 127\.0\.1\.1[[:space:]]*\b[A-Z,a-z,0-9]\{1,62\}
+with open("/etc/hosts", "r") as hosts_file:
+  for line in hosts_file:
+    if re.match("127\.0\.1\.1\s*[A-Z,a-z,0-9]{1,62}", line):
+      # This is the line that we want to change...
+      hosts_file_string.append("127.0.1.1   " + host_name)
+    else:
+      # Keep this line as it is and add it to the hosts_file_string variable...
+      hosts_file_string.append(line)
+
+# Now join all of the strings together...
+file_string = "\n".join(hosts_file_string)
 # The immediately proceeding step might be unnecessary...
 with open("/var/www/admin/host-config.txt", "w") as host_file:
   host_file.write('# Automatically generated hostname file.\n')
   host_file.write(host_name + '\n')
-
-# Regex to find the host name in the /etc/hosts file = 127\.0\.1\.1[[:space:]]*\b[A-Z,a-z,0-9]\{1,62\}
-with open("/etc/hosts", "w") as hosts_file:
-  for line in hosts_file:
-    if re.match("127\.0\.1\.1\s*[A-Z,a-z,0-9]{1,62}", line):
-      print line
+  hosts_file.write('# Begin with hosts file config below \n')
+  hosts_file.write(file_string + '\n')
 
 # Regex to find the  host name in the /etc/hostname file
-
 
 for count in range(1,10): 
   print 'Hello&nbsp;World... '
