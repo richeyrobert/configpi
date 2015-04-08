@@ -83,6 +83,8 @@ hosts_file_string = []
 
 # Open the existing hosts file and read it into the hosts_file_string variable...
 # Regex to find the host name in the /etc/hosts file = 127\.0\.1\.1[[:space:]]*\b[A-Z,a-z,0-9]\{1,62\}
+print "opening the hosts file... <br>"
+
 with open("/etc/hosts", "r") as hosts_file:
   for line in hosts_file:
     if re.match("127\.0\.1\.1\s*[A-Z,a-z,0-9]{1,62}", line):
@@ -95,6 +97,7 @@ with open("/etc/hosts", "r") as hosts_file:
 # Now join all of the strings together...
 file_string = "\n".join(hosts_file_string)
 # The immediately proceeding step might be unnecessary...
+print "Opening the host-config file... <br>"
 with open("/var/www/admin/host-config.txt", "w") as host_file:
   host_file.write('# Automatically generated hostname file.\n')
   host_file.write(host_name + '\n')
