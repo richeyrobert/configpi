@@ -94,8 +94,6 @@ with open("/etc/hosts", "r") as hosts_file:
       # Keep this line as it is and add it to the hosts_file_string variable...
       hosts_file_string.append(line)
 
-# Now join all of the strings together...
-file_string = "\n".join(hosts_file_string)
 # The immediately proceeding step might be unnecessary...
 print "Opening the host-config file... <br>"
 print file_string
@@ -104,7 +102,8 @@ with open("/var/www/admin/host-config.txt", "w") as host_file:
   host_file.write('# Automatically generated hostname file.\n')
   host_file.write(host_name + '\n')
   hosts_file.write('# Begin with hosts file config below.\n')
-  hosts_file.write(file_string + '\n')
+  for line in hosts_file_string:
+    hosts_file.write(line + '\n')
 
 # Regex to find the  host name in the /etc/hostname file
 
