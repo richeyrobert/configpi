@@ -13,6 +13,11 @@ network = ""
 broadcast = ""
 dns_nameservers = "8.8.8.8"
 
+# Output the main html crap for the page displayed...
+print "Content-Type: text/html\n\n"
+print '<html><head><meta content="text/html; charset=UTF-8" />'
+print '<title>ConfigPi Applying Settings</title><p>'
+
 # This is the read file function
 with open("/var/www/admin/configpi.config") as settings_from_web:
   for line in settings_from_web:
@@ -79,9 +84,7 @@ with open("/var/www/admin/host-config.txt", "w") as host_file:
 
 
 
-print "Content-Type: text/html\n\n"
-print '<html><head><meta content="text/html; charset=UTF-8" />'
-print '<title>ConfigPi Applying Settings</title><p>'
+
 for count in range(1,100): 
   print 'Hello&nbsp;World... '
 print "</p></body></html>"
