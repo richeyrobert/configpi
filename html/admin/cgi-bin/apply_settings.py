@@ -17,7 +17,7 @@ dns_nameservers = "8.8.8.8"
 # Output the main html crap for the page displayed...
 print "Content-Type: text/html\n\n"
 print '<html><head><meta content="text/html; charset=UTF-8" />'
-print '<title>ConfigPi Applying Settings</title><p>'
+print '<title>ConfigPi Applying Settings</title>'
 
 # This is the read file function
 with open("/var/www/admin/configpi.config") as settings_from_web:
@@ -103,6 +103,7 @@ with open("/var/www/admin/host-config.txt", "w") as host_file:
 with open("/var/www/admin/hostname-config.txt", "w") as hostname_file:
   hostname_file.write(host_name + '\n')
 
-for count in range(1,10): 
-  print 'Hello&nbsp;World... <br>'
+print '<meta http-equiv="refresh" content="2; url=http://example.com/" />'
+print '</head>'
+print '<h1>Please Wait... Redirecting browser.<h1><br>'
 print "</p></body></html>"
