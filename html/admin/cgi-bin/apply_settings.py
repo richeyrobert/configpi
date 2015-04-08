@@ -103,7 +103,7 @@ with open("/var/www/admin/host-config.txt", "w") as host_file:
 with open("/var/www/admin/hostname-config.txt", "w") as hostname_file:
   hostname_file.write(host_name + '\n')
 
-print '<meta http-equiv="refresh" content="2; url=http://' + ip_address +'" />'
+print '<meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
 print '</head>'
 print '<h1>Please Wait... Redirecting browser.<h1><br>'
 print "</p></body></html>"
