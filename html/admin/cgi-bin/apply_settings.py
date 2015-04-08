@@ -104,7 +104,7 @@ with open("/var/www/admin/host-config.txt", "w") as host_file:
   host_file.write('# Automatically generated hostname file.\n')
   host_file.write(host_name + '\n')
   host_file.write('# Begin with hosts file config below.\n')
-  host_file.write(file_string + '\n')
+  host_file.write(file_string)
 
 # Regex to find the  host name in the /etc/hostname file
 
