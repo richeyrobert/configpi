@@ -73,8 +73,8 @@ with open("/var/www/admin/ip-config.txt", "w") as real_settings_file:
 # In /etc/hostname we need to change the first line from 'old hostname to newhostname'
 # The immediately proceeding step might be unnecessary...
 with open("/var/www/admin/host-config.txt", "w") as host_file:
-  host_file.write('# Automatically generated ethernet settings.\n')
-  host_file.write(host_name)
+  host_file.write('# Automatically generated hostname file.\n')
+  host_file.write(host_name + '\n')
 
 
 

@@ -51,7 +51,7 @@
       if( $dhcp == 'NO')
       {
           // Check if host name has been entered
-        if (!$_POST['host_name'] || !filter_var($_POST['host_name'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^([a-z0-9](?:[a-z0-9-]*[a-z0-9]))")))) {
+        if (!$_POST['host_name'] || !filter_var($_POST['host_name'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^([a-z0-9](?:[a-z0-9-]*[a-z0-9]))$/i")))) {
             $errHostname = 'Please enter the host name';
             $error_count += 1;
         }
