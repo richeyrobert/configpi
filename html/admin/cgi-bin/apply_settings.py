@@ -3,6 +3,7 @@
 # We need to import some stuff
 import ipaddr as ipaddress
 import iptools
+import re
 # We need some variables for later
 host_name = ""
 dhcp = ""
@@ -81,10 +82,15 @@ with open("/var/www/admin/host-config.txt", "w") as host_file:
   host_file.write('# Automatically generated hostname file.\n')
   host_file.write(host_name + '\n')
 
+# Regex to find the host name in the /etc/hosts file = 127\.0\.1\.1[[:space:]]*\b[A-Z,a-z,0-9]\{1,62\}
+with open("/etc/hosts", "w") as hosts_file:
+  for line in hosts_file:
+    if re.match("127\.0\.1\.1\s*[A-Z,a-z,0-9]{1,62}", line):
+      print line
+
+# Regex to find the  host name in the /etc/hostname file
 
 
-
-
-for count in range(1,100): 
+for count in range(1,10): 
   print 'Hello&nbsp;World... '
 print "</p></body></html>"
