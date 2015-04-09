@@ -4,6 +4,7 @@
 import ipaddr as ipaddress
 import iptools
 import re
+import subprocess
 # We need some variables for later
 host_name = ""
 dhcp = ""
@@ -103,7 +104,15 @@ with open("/var/www/admin/host-config.txt", "w") as host_file:
 with open("/var/www/admin/hostname-config.txt", "w") as hostname_file:
   hostname_file.write(host_name + '\n')
 
-print '<meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
-print '</head>'
-print '<h1>Please Wait... Redirecting browser.<h1><br>'
+# Now let's try to apply the settings using our settings_applier script...
+# This variable will let us know if the script executed correctly or not
+error_code = 0
+error_code = subprocess.call("settings_applier")
+if (error_code == 0):
+  print '<meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
+  print '</head>'
+  print '<h1>Please Wait... Redirecting browser.<h1><br>'
+else:
+  print '</head>'
+  print '<h1>Error applying settings!!</h1>'
 print "</p></body></html>"
