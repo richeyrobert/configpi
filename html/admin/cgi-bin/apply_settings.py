@@ -115,7 +115,7 @@ error_code = subprocess.call(["sudo", "settings_applier"])
 print '     <meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
 print '   </head>'
 print '   <h1>Please Wait... Redirecting browser.<h1><br>'
-if (error_code != 0):
+if (error_code == 0):
   # Do nothing
   print '   <!-- Settings applied successfully -->'
 else:
