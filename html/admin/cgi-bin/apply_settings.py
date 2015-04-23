@@ -17,8 +17,10 @@ dns_nameservers = "8.8.8.8"
 
 # Output the main html crap for the page displayed...
 print "Content-Type: text/html\n\n"
-print '<html><head><meta content="text/html; charset=UTF-8" />'
-print '<title>ConfigPi Applying Settings</title>'
+print '<html>'
+print '    <head>'
+print '     <meta content="text/html; charset=UTF-8" />'
+print '     <title>ConfigPi Applying Settings</title>'
 
 # This is the read file function
 with open("/var/www/admin/configpi.config") as settings_from_web:
@@ -35,7 +37,7 @@ with open("/var/www/admin/configpi.config") as settings_from_web:
   		# print "This is the IP Address Line " + ip_address + "<br>"
   	elif "SUBNETMASK" in line:
   		subnet_mask = line.split("=")[1].strip()
-  		print "This is the Subnet Mask Line " + subnet_mask + "<br>"
+  		# print "This is the Subnet Mask Line " + subnet_mask + "<br>"
   	elif "GATEWAY" in line:
   		gateway = line.split("=")[1].strip()
   		# print "This is the Gateway Line " + gateway + "<br>"
@@ -109,10 +111,11 @@ with open("/var/www/admin/hostname-config.txt", "w") as hostname_file:
 error_code = 0
 error_code = subprocess.call("settings_applier")
 if (error_code == 0):
-  print '<meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
-  print '</head>'
-  print '<h1>Please Wait... Redirecting browser.<h1><br>'
+  print '     <meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
+  print '   </head>'
+  print '   <h1>Please Wait... Redirecting browser.<h1><br>'
 else:
-  print '</head>'
-  print '<h1>Error applying settings!!</h1>'
-print "</p></body></html>"
+  print '   </head>'
+  print '   <h1>Error applying settings!!</h1>'
+print '   </body>'
+print '</html>"
