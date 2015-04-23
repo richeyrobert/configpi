@@ -108,7 +108,9 @@ with open("/var/www/admin/hostname-config.txt", "w") as hostname_file:
 
 # Now let's try to apply the settings using our settings_applier script...
 # This variable will let us know if the script executed correctly or not
+print '     <!--Attempting to call the settings applier script-->'
 error_code = 0
+print '     <!--Error code = -->' + error_code
 error_code = subprocess.call("settings_applier")
 if (error_code == 0):
   print '     <meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
