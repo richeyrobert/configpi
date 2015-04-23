@@ -27,8 +27,8 @@ sudo chown root:root /etc/hostname
 sudo chmod 744 /etc/hostname
 #
 # I may need to perform a reboot instead of ifup and ifdown for the settings to actually take effect... Let's experiment and see
-# sudo reboot
-# Take down the interface...
-sudo ifdown eth0
-# Bring the new interface back up...
-sudo ifup eth0
+sudo reboot
+# # Take down the interface...
+# sudo ifdown eth0
+# # Bring the new interface back up...
+# sudo ifup eth0

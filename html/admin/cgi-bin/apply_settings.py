@@ -111,11 +111,13 @@ with open("/var/www/admin/hostname-config.txt", "w") as hostname_file:
 print '     <!--Attempting to call the settings applier script-->'
 error_code = 0
 print '     <!--Error code = ' + str(error_code) + '-->'
-error_code = subprocess.call("settings_applier")
-if (error_code == 0):
-  print '     <meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
-  print '   </head>'
-  print '   <h1>Please Wait... Redirecting browser.<h1><br>'
+error_code = subprocess.call(["sudo", "settings_applier"])
+print '     <meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
+print '   </head>'
+print '   <h1>Please Wait... Redirecting browser.<h1><br>'
+if (error_code != 0):
+  # Do nothing
+  print '   <!-- Settings applied successfully -->'
 else:
   print '   </head>'
   print '   <h1>Error applying settings!!</h1>'

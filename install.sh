@@ -117,14 +117,15 @@ sed -i '
         cgi.assign = ( ".py" => "/usr/bin/python" )' /etc/lighttpd/conf-enabled/10-cgi.conf
 #
 # Now add the necessary changes to the visudo file to allow the script to run as root.
-
-
-
-
-
-
-
+# Create the included visudo file
+touch /etc/sudoers.d/www-data
+# Write changes to the file
+echo "www-data ALL=NOPASSWD: /usr/local/bin/settings_applier" >> /etc/sudoers.d/www-data
+# Change the ownership and the permissions of the file
+chmod 0440 /etc/sudoers.d/www-data
+chown root:root /etc/sudoers.d/www-data
+# Now the settings_applier will be able to be called from the www-data user without needing a sudo password.
 
 # 8. Restart all of the necessary services
 echo "Restarting all necessary services..."
-#
+# All necessary services should have already been restarted by now. 
