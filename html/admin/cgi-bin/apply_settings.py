@@ -118,4 +118,4 @@ else:
   print '   </head>'
   print '   <h1>Error applying settings!!</h1>'
 print '   </body>'
-print '</html>"
+print '</html>'
