@@ -116,7 +116,8 @@ print '     <meta http-equiv="refresh" content="120; url=http://' + ip_address +
 print '   </head>'
 print '   <h1>Please Wait... Redirecting browser.<h1><br>'
 print '   <h2><span id="timer"></span></h2>'
-print '<script>function timer()'
+print '<script>var count=30;'
+print 'var counter=setInterval(timer, 1000);function timer()'
 print '{'
 print '  count=count-1;'
 print '  if (count <= 0)'
@@ -125,7 +126,7 @@ print '     clearInterval(counter);'
 print '     return;'
 print '  }'
 print ' document.getElementById("timer").innerHTML=count + " secs"; // watch for spelling'
-print '}'
+print '}</script>'
 if (error_code == 0):
   # Do nothing
   print '   <!-- Settings applied successfully -->'
