@@ -98,7 +98,7 @@ with open("/etc/hosts", "r") as hosts_file:
 # Now join all of the strings together...
 file_string = "".join(hosts_file_string)
 
-# Now let's write a replacement /etc/hosts file...
+# Now let's write a replacement /etc/hosts file..
 with open("/var/www/admin/host-config.txt", "w") as host_file:
   host_file.write(file_string + '\n')
 
@@ -110,7 +110,7 @@ with open("/var/www/admin/hostname-config.txt", "w") as hostname_file:
 # This variable will let us know if the script executed correctly or not
 print '     <!--Attempting to call the settings applier script-->'
 error_code = 0
-print '     <!--Error code = -->' + error_code
+print '     <!--Error code = ' + str(error_code) + '-->'
 error_code = subprocess.call("settings_applier")
 if (error_code == 0):
   print '     <meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
