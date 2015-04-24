@@ -113,9 +113,6 @@ error_code = 0
 print '     <!--Error code = ' + str(error_code) + '-->'
 error_code = subprocess.call(["sudo", "settings_applier"])
 print '     <meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
-print '   </head>'
-print '   <h1>Please Wait... Redirecting browser.<h1><br>'
-print '   <h2><span id="timer"></span></h2>'
 print '<script>var count=30;'
 print 'var counter=setInterval(timer, 1000);function timer()'
 print '{'
@@ -127,6 +124,10 @@ print '     return;'
 print '  }'
 print ' document.getElementById("timer").innerHTML=count + " secs"; // watch for spelling'
 print '}</script>'
+print '   </head>'
+print '   <body onload="timer();>'
+print '   <h1>Please Wait... Redirecting browser.<h1><br>'
+print '   <h2><span id="timer"></span></h2>'
 if (error_code == 0):
   # Do nothing
   print '   <!-- Settings applied successfully -->'
