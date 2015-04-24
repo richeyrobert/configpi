@@ -114,7 +114,7 @@ print '     <!--Error code = ' + str(error_code) + '-->'
 error_code = subprocess.call(["sudo", "settings_applier"])
 print '     <meta http-equiv="refresh" content="120; url=http://' + ip_address + '/admin/" />'
 print '   </head>'
-print '   <body onload="timer();>'
+print '   <body onload="timer();">'
 print '     <h1>Please Wait... Redirecting browser.<h1><br>'
 print '     <h2><span id="timer"></span></h2>'
 print '   </body>'
