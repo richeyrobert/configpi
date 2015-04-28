@@ -51,6 +51,7 @@ broadcast = net_info[1].strip()
 # This is the write file function
 with open("/var/www/admin/ip-config.txt", "w") as real_settings_file:
   real_settings_file.write('# Automatically generated ethernet settings.\n')
+  real_settings_file.write('auto lo\n')
   real_settings_file.write('iface lo inet loopback\n')
   if "NO" in dhcp:
   	real_settings_file.write('iface eth0 inet static\n')
