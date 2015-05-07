@@ -2,9 +2,9 @@
   ini_set('display_errors', 'On');
   error_reporting(E_ALL);
   if (isset($_POST) && !empty($_POST)) {
-    echo("Post Variable dump begin: <br>");
-    var_dump($_POST);
-    echo("<br>Post Variable dump end.<br>");
+    // echo("Post Variable dump begin: <br>");
+    // var_dump($_POST);
+    // echo("<br>Post Variable dump end.<br>");
     if ( $_POST["submit"] == "Submit") {
       $dhcp = ( isset($_POST['dhcp']) ? "YES" : "NO" );
       $host_name = $_POST['host_name'];
