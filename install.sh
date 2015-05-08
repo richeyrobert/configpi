@@ -90,6 +90,8 @@ cp config_files/settings_applier.sh /usr/local/bin/settings_applier
 # 5. Make sure all of the scripts are executable
 echo "Making sure all proper scripts are executable..."
 chmod 755 /var/www/admin/cgi-bin/apply_settings.py
+# Have to set sticky bit here because changing owner resets the sticky bit...
+chown root:staff /usr/local/bin/settings_applier
 chmod 4755 /usr/local/bin/settings_applier
 #
 # 6. Make sure all of the files have the proper permissions
@@ -97,8 +99,8 @@ echo "Making sure all of the files have the proper permissions..."
 chown www-data:www-data /var/www/admin/configpi.config
 chown www-data:www-data /var/www/admin/ip-config.txt
 chown www-data:www-data /var/www/admin/host-config.txt
+chown www-data:www-data /var/www/admin/hostname-config.txt
 chown www-data:www-data /var/www/admin/cgi-bin/apply_settings.py
-chown root:root /usr/local/bin/settings_applier
 #
 # 7. Make the necessary changes to any config files
 echo "Making the necessary changes to any config files..."
